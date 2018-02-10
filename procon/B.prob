@@ -1,0 +1,17 @@
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <set>
+typedef long long ll;
+using namespace std;
+
+int main()
+{
+// input
+
+
+//
+
+}
