@@ -1,15 +1,22 @@
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
+#include <cmath>
+#include <limits>
+#include <vector>
 #include <string>
+#include <set>
+typedef long long ll;
 using namespace std;
 
 int main()
 {
-	char s;
-	cin >> s;
-	if (s == 'a') {
-		std::cout << "yes" << '\n';
-	}
+  // input
+
+
+  // process
+
+
+  //output
 
 }
