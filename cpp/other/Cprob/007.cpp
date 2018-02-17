@@ -39,10 +39,13 @@ int main()
   queue<p> queue;
   queue.push(p(sx,sy));
   d[sy][sx] = 0;
+  // std::cout << ptmp.first << '\n';
+  // std::cout << ptmp.second << '\n';
 
   // process  // '#' is wall.
   while (queue.size() != 0) {
     p ptmp = queue.front();
+    // cout << ptmp.first << ", " << ptmp.second << " : " << d[ptmp.second][ptmp.first] << " " << v[ptmp.second][ptmp.first]<< endl;
     queue.pop();
     for(ll i = 0; i < 4; i++)
     {
@@ -57,6 +60,10 @@ int main()
     }
   }
 
+  // for(int i = 0; i <= r; i++) {
+  //   for(auto v: d[i]) cout << v << " ";
+  //   cout << endl;
+  // }
   // //output
   std::cout << d[gy][gx] << '\n';
 }
