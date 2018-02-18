@@ -49,13 +49,10 @@ int main()
 
   // process
   int result = 0;
-  for(int i = maxa_index; i < n; i++)
+  for(int i = n-1; i >= maxa_index; i--)
   {
     h -= vb[i];
     result++;
-    // std::cout << "==============" << '\n';
-    // std::cout << h << '\n';
-    // std::cout << "==============" << '\n';
     if (h <= 0) {
       std::cout << result << '\n';
       exit(0);
@@ -63,9 +60,6 @@ int main()
   }
 
   while (true) {
-    // std::cout << "==============" << '\n';
-    // std::cout << "h : " << h << '\n';
-    // std::cout << "==============" << '\n';
     if (h <= 0) {
       std::cout << result << '\n';
       exit(0);
