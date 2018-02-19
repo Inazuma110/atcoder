@@ -14,32 +14,14 @@ int main()
 {
 // input
   int x,k;
+  //x : value, k : keta
   cin >> x >> k;
-//
-  int result = 0;
-  string tmp;
-
+  ll tmp;
   if (k == 0) {
-    result = x + 1;
-    // exit(1);
+    std::cout << x+1 << '\n';
+    exit(0);
   }
-  else if (k > log10(x)) {
-    result = pow(10,k);
-  }
-  else
-  {
-    stringstream ss;
-    ss << x;
-    tmp = ss.str();
-    for(int i = 0; i < k; i++ )
-    {
-      tmp[sizeof(x)-(i+1)] = '0';
-    }
-    result = stoi(tmp);
-    if (result <= x) {
-      result += pow(10,k);
-    }
-  }
-
-  std::cout << result << '\n';
+  x /= pow(10,k);
+  tmp = (x+1)*pow(10,k);
+  std::cout << tmp << '\n';
 }

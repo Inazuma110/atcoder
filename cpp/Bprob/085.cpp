@@ -1,38 +1,40 @@
+using namespace std;
+
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <climits>
 #include <vector>
 #include <string>
 #include <set>
+#include <queue>
+#include <stack>
+#include <map>
+#include <numeric>
 typedef long long ll;
-using namespace std;
+typedef pair<int,int> p;
+
+#define rep(i, n) for(int (i) = 0; (i) < (n); (i)++)
+
 
 int main()
 {
   // input & declare
-  int n;
+  int n,tmp;
   cin >> n;
-  std::vector<string> v;
-  string tmp;
+  std::vector<int> v;
   for(int i = 0; i < n; i++)
   {
     cin >> tmp;
     v.push_back(tmp);
   }
-
+  set<int> s(v.begin(), v.end());
+  std::cout << s.size() << '\n';
   // process
-  // for(int i = 0; i < n / 2)
 
 
-  //output
-  for(int i = 0; i < n; i++)
-  {
-    for(int j = n-1; j > -1; j--)
-    {
-      cout << (v[j])[i];
-    }
-    cout << endl;
-  }
+  // output
+
 }
