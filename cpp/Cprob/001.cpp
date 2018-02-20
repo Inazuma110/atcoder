@@ -24,7 +24,7 @@ int main()
   std::cout << dis << '\n';
   // process
 
-
+for (int i = 0; i < count; i++)
   //output
 
 }
