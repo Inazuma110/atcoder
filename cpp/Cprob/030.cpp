@@ -73,3 +73,4 @@ int main()
   LABEL:
   std::cout << result << '\n';
 }
+a
