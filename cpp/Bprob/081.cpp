@@ -19,29 +19,43 @@ typedef pair<int,int> p;
 #define rep(i, n) for(int (i) = 0; (i) < (n); (i)++)
 
 
-
-
 int main()
 {
-  // input & declare
   int n;
-  std::cin >> n;
-  std::vector<int> v(n,0);
-  bool even = true;
-  for(int i : v)
+  cin >> n;
+  vector<int> v;
+  int tmp;
+  for (int i = 0; i < n; i++)
   {
-    cin >> i;
+    cin >> tmp;
+    v.push_back(tmp);
   }
+  int res = 0;
 
-  // process
-  while (/* condition */) {
-    /* code */
+  while (true)
+  {
+    // cout << res << endl;
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+      if (v[i] % 2 == 0)
+      {
+        count++;
+      }
+    }
+    if (count == n)
+    {
+      for (int i = 0; i < n; i++)
+      {
+        v[i] /= 2;
+        // cout << v[i] << endl;
+      }
+    }
+    if (count != n)
+    {
+      cout << res << endl;
+      return 0;
+    }
+    res++;
   }
-
-  if (i % 2 == 1) {
-    even = false;
-  }
-  // output
-
-
 }
