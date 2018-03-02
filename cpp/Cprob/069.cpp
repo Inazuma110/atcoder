@@ -20,21 +20,31 @@ int main()
 {
   int n;
   cin >> n;
-  int sum = 0;
-  int tmp = n;
-  // cout << int(log10(n)) << endl;
-  for (int i = int(log10(n)); i >= 0 ; i--)
+  vector<ll> v(n,0);
+  int countA = 0;
+  int countB = 0;
+  int countC = 0;
+  for (int i = 0; i < n; i++)
   {
-    int x = pow(10,i);
-    sum += (tmp / x);
-    tmp %= x;
+    cin >> v[i];
+    if (v[i] % 4 == 0){
+      countA++;
+    }else if (v[i] % 2 == 0){
+      countB++;
+    }else{
+      countC++;
+    }
   }
-  if (n % sum == 0)
+
+  if (countB >= 1)
+  {
+    countC++;
+  }
+
+  if (countC <= countA + 1)
   {
     cout << "Yes" << endl;
-  }
-  else
-  {
+  }else{
     cout << "No" << endl;
   }
 }

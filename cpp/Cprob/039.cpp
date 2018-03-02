@@ -18,23 +18,15 @@ typedef pair<int,int> p;
 
 int main()
 {
-  int n;
-  cin >> n;
-  int sum = 0;
-  int tmp = n;
-  // cout << int(log10(n)) << endl;
-  for (int i = int(log10(n)); i >= 0 ; i--)
+  string s;
+  cin >> s;
+  string piano = "HWHWHHWHWHWHHWHWHHWH";
+  vector<string> music = {""};
+  while (true)
   {
-    int x = pow(10,i);
-    sum += (tmp / x);
-    tmp %= x;
-  }
-  if (n % sum == 0)
-  {
-    cout << "Yes" << endl;
-  }
-  else
-  {
-    cout << "No" << endl;
+    if (s == piano)
+    {
+
+    }
   }
 }
