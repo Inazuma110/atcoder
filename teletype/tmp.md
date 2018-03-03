@@ -216,5 +216,47 @@ int main()
 
 ```py
 N = int(input())
+list1 = list(map(int,input.split())
+no1 = 0
+no2 = 0
+no3 = 0
+for z in range(N):
+  if list1[z] % 4 == 0:
+    no1 += 1
+  elif list1[z] % 2 == 0:
+    no2 += 1
+  else:
+    no3 += 1
+
+if (no1 + 1) >= no3 :
+  print("YES")
+else:
+  print("NO")
+```
+
+```py
+N = int(input())
+list1 = list(map(int,input.split()))
+no1 = 0
+no2 = 0
+no3 = 0
+for z in range(N):
+
+  if list1[z] % 4 == 0:
+    no1 += 1
+  elif list1[z] % 2 == 0:
+    no2 += 1
+  else:
+    no3 += 1
+
+  if no2 >= 1:
+    no3 += 1
+
+
+  if no1 + 1 >= no3:
+    print("Yes")
+  else:
+    print("No")
+
 
 ```
