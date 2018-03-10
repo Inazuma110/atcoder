@@ -1,52 +1,48 @@
-#include <iostream>
-#include <vector>
-#include <cstdlib>
 using namespace std;
+
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <cmath>
+#include <limits>
+#include <climits>
+#include <vector>
+#include <string>
+#include <set>
+#include <queue>
+#include <stack>
+#include <map>
+#include <numeric>
+typedef long long ll;
+typedef pair<int,int> p;
 
 int main()
 {
-	int n,tmp;
-	cin >> n;
-	vector<int> vec;
-	int sum = 0;
-	int ave = 0;
-	int result = 0;
+  int n;
+  cin >> n;
+  vector<int> v(n,0);
+  int ave = 0;
+  for (int i = 0; i < n; i++){
+    cin >> v[i];
+    ave += v[i];
+  }
+  if (ave % n != 0) {
+    cout << -1 << endl;
+    return 0;
+  }
 
-	for (int i = 0; i < n; ++i)
-	{
-		cin >> tmp;
-		vec.push_back(tmp);
-		sum += vec[i];
-	}
-
-	if (sum % n != 0)
-	{
-		cout << "-1" << endl;
-		exit(1);
-	}
-	
-	ave = sum / n;
+  ave /= n;
 
 
-	for (int i = 0; i < n-1; i++)
-	{
-		if (vec[i] > ave)
-		{
-			vec[i+1] += (vec[i]-ave);
-			vec[i] -= (vec[i]-ave);
-			result++;
-		}
-	}
+  int num = 0, count = 0;
+  for (int i = 0; i < n; i++){
+    if (v[i] != ave) {
+      num += (v[i] - ave);
+    }
+    if (num != 0) {
+      count++;
+    }
+  }
+  cout << count << endl;
 
-	for (int i = n-1; i > 0; i--)
-	{
-		if (vec[i] > ave)
-		{
-			vec[i-1] += (vec[i]-ave);
-			vec[i] -= (vec[i]-ave);
-			result++;
-		}
-	}
-
-	cout << result << endl;
 }
