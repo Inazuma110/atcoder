@@ -1,25 +1,26 @@
+using namespace std;
+
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <climits>
 #include <vector>
 #include <string>
 #include <set>
 #include <queue>
+#include <stack>
+#include <map>
+#include <numeric>
 typedef long long ll;
-using namespace std;
+typedef pair<int,int> p;
 
 int main()
 {
-  // input & declare
-  int result = 0;
-  std::vector<string> v;
-  v.push_back("aiueo");
-  std::cout << v[0][2] << '\n';
-  // process
+  int a, b;
+  cin >> a >> b;
+  int mode;
 
-
-  //output
-
+  return 0;
 }
