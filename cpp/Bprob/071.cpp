@@ -17,19 +17,20 @@ int main()
   }
   set<char> set(v.begin(), v.end());
   vector<char> v2(set.begin(), set.end());
-  
+  // for(char c : v2) cout << c;
+  // cout << endl;
+  if (int(v2.size()) == 26) {
+    cout << "None" << endl;
+    return 0;
+  }
 
-  for (int i = 0; i < int(v2.size())-1; i++){
-    if (v2[i] == v2[i+1]) {
-      continue;
-    }
-    char tmp = v2[i];
-    tmp++;
-    if (tmp != v2[i+1]) {
-      cout << tmp << endl;
+  string tmp = "abcdefghijklmnopqrstuvwxyz";
+
+  for (int i = 0; i < 26; i++){
+    if (v2[i] != tmp[i]) {
+      cout << tmp[i] << endl;
       return 0;
     }
   }
-  cout << "None" << endl;
   return 0;
 }
