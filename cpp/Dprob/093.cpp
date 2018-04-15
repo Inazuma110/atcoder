@@ -18,30 +18,28 @@ int main()
   }
 
   for (int i = 0; i < q; i++){
+    if (v[i].first == 1 && v[i].second == 1) {
+      cout << 0 << endl;
+      continue;
+    }
     long double tmp = pow(v[i].first * v[i].second, 0.5);
-    ll total = v[i].first * v[i].second;
+    // ll total = v[i].first * v[i].second;
     // ll hoge = v[i].first * v[i].second;
     ll sqrtTmp = int(tmp);
     // cout << sqrtTmp << endl;
-    res = (sqrtTmp - 1) * 2;
-    if (tmp == sqrtTmp && v[i].first != v[i].second) {
+    res = sqrtTmp * 2 - 1;
+
+    // if (v[i].first == v[i].second && tmp == sqrtTmp)
+    //   res--;
+
+    if (tmp == sqrtTmp)
       res--;
-    }
-    if ((sqrtTmp-1)*(sqrtTmp+2) < total && abs(v[i].first - v[i].second) != 1) {
-      res++;
-    }
+
+    if (abs(v[i].first - v[i].second) == 1)
+      res--;
 
 
-    // if (sqrtTmp == v[i].first && v[i].first == v[i].second) {
-    //   res = (sqrtTmp-1) * 2;
-    //   cout << "3x3" << endl;
-    // }else if (tmp - sqrtTmp == 0) {
-    //   res = (sqrtTmp - 2) * 2 + 1;
-    //   cout << "x^2" << endl;
-    // }else{
-    //   res = (sqrtTmp-1) * 2 + 1;
-    //   cout << "other" << endl;
-    // }
+
     cout << res << endl;
   }
   return 0;
