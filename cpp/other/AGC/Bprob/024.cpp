@@ -5,42 +5,36 @@ using namespace std;
 typedef long long ll;
 typedef pair<int,int> p;
 
-
-int main(void)
+int main()
 {
   int n;
   cin >> n;
-  vector<int> v(n, 0);
-  vector<int> vTmp(n, 0);
+  vector<p> v(n, {0, 0});
   for (int i = 0; i < n; i++){
-    cin >> v[i];
-    vTmp[i] = v[i];
+  cin >> v[i].first;
+  v[i].second = i;
   }
 
-  int res1 = 0;
-  // int res2 = 0;
+  sort(v.begin(), v.end());
+  bool is0 = true;
   for (int i = 0; i < n; i++){
-    if (v[i] == i+1 && v[n-1-i] == n-i) {
-      res1++;
-      // vTmp.erase(v.end() - i);
-      continue;
-    }
-    if (v[i] != i+1) {
-      // res1 = v[i] + i;
-      res1 = n - v[n-1-i];
-      // cout << min(res1, res2) << endl;
-      cout << res1 << endl;
-      // cout << res2 << endl;
-
-      break;
+    if (v[i].second != i) {
+      is0 = false;
     }
   }
-
-
-  // for (int i = 0; i < n; i++){
-  //   res =
-  // }
-
-
+  if (is0) {
+    cout << 0 << endl;
+    return 0;
+  }
+  int maxv = -1, count = 0;
+  for (int i = 0; i < n - 1; i++){
+    count++;
+    if (v[i].second >= v[i+1].second) {
+      maxv = max(maxv, count);
+      count = 0;
+    }
+  }
+  maxv = max(maxv, count);
+  cout << n - maxv << endl;
   return 0;
 }
