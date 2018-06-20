@@ -22,8 +22,16 @@ int main()
   for (int i = 0; i < n; i++) cin >> b[i];
   for (int i = 0; i < n; i++) cin >> c[i];
 
+  sort(all(a));
+  sort(all(b));
+  sort(all(c));
+
+  int res = 0;
   for(int i : b)
   {
-    
+    int tmp1 = lower_bound(all(a), i) - a.begin();
+    int tmp2 = n - (upper_bound(all(c), i) - c.begin());
+    res += tmp1 * tmp2;
   }
+  cout << res << endl;
 }
