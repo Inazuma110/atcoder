@@ -21,8 +21,8 @@ int main()
   //   cout << s[i * w];
   // }
   int i = 0;
-  while(i * w <= int(s.size())) {
-    cout << s[i * w] << endl;
+  while(i * w <= int(s.size())-1) {
+    cout << s[i * w];
     i++;
   }
   cout << endl;
