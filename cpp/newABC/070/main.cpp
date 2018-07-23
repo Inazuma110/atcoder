@@ -35,11 +35,15 @@ int main()
     //if(v[i-1] == 1 && v[i] == 2) begin = i;
   }
 
+  if(b <= c || d <= a) cout << 0 << endl;
+  else if(c >= a && d <= b) cout << d - c << endl;
+  else if(a >= c && b <= d) cout << b - a << endl;
+  else
+  {
+    if(a <= c) cout << abs(c - b) << endl;
+    else cout << abs(d - a) << endl;
+  }
 //   for(int i : v) cout << i << endl;
-
-//   cout << "===================" << endl;
-//   cout << begin << endl;
-//   cout << end << endl;
-  if(res == 0) cout << res << endl;
-  else cout << res - 1 << endl;
+  // if(res == 0) cout << res << endl;
+  // else cout << res - 1 << endl;
 }
