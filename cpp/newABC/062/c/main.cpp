@@ -13,8 +13,9 @@ typedef pair<ll,ll> p;
 
 int main()
 {
-  int n, k;
-  cin >> n >>k;
-  if(n % k == 0)cout << 0 << endl;
-  else cout << 1 << endl;
+  int n, m;
+  cin >> n >> m;
+  int bigH = pow(max(n, m), 0.5) + 1;
+  int bigW = min(n, m);
+
 }

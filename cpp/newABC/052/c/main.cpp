@@ -10,11 +10,16 @@ using namespace std;
 typedef long long ll;
 typedef pair<ll,ll> p;
 
+vector<ll> dp = {0, 1};
+
+void dfs()
+{
+}
+
 
 int main()
 {
-  int n, k;
-  cin >> n >>k;
-  if(n % k == 0)cout << 0 << endl;
-  else cout << 1 << endl;
+  ll n;
+  cin >> n;
+  ll sum = 0;
 }

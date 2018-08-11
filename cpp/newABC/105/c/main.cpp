@@ -13,8 +13,21 @@ typedef pair<ll,ll> p;
 
 int main()
 {
-  int n, k;
-  cin >> n >>k;
-  if(n % k == 0)cout << 0 << endl;
-  else cout << 1 << endl;
+  ll n;
+  cin >> n;
+  string s = "";
+  while(n != 0)
+  {
+    if(n % 2 != 0)
+    {
+      s = "1" + s;
+      n--;
+    }
+    else s = "0" + s;
+    n /= -2;
+  }
+
+  if(s == "") s = "0";
+
+  cout << s << endl;
 }

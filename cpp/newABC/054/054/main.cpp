@@ -13,8 +13,18 @@ typedef pair<ll,ll> p;
 
 int main()
 {
-  int n, k;
-  cin >> n >>k;
-  if(n % k == 0)cout << 0 << endl;
-  else cout << 1 << endl;
+  int n, m;
+  vector<p> v(m, 0);
+
+  for(int i = 0; i < m; i++)
+  {
+    cin >> v[i].first >> v[i].second;
+  }
+
+
+
+
+  
+
+
 }
