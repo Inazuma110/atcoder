@@ -10,17 +10,20 @@ using namespace std;
 typedef long long ll;
 typedef pair<ll,ll> p;
 
-vector<ll> dp = {0, 1};
-
-void dfs()
-{
-  
-}
-
 
 int main()
 {
-  ll n;
+  int n;
   cin >> n;
-  ll sum = 0;
+  int res = 0;
+  for (int i = 1; i <= n; i += 2)
+  {
+    int count = 0;
+    for (int j = 1; j <= n; j++)
+    {
+      count += (i % j == 0);
+    }
+    if(count == 8) res++;
+  }
+  cout << res << endl;
 }

@@ -10,17 +10,20 @@ using namespace std;
 typedef long long ll;
 typedef pair<ll,ll> p;
 
-vector<ll> dp = {0, 1};
-
-void dfs()
-{
-  
-}
-
 
 int main()
 {
-  ll n;
-  cin >> n;
-  ll sum = 0;
+  string s;
+  ll k;
+  cin >> s >> k;
+
+  for (int i = 0; i < k; i++)
+  {
+    if(s[i] != '1')
+    {
+      cout << s[i] << endl;
+      return 0;
+    }
+  }
+  cout << 1 << endl;
 }
