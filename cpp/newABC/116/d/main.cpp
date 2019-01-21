@@ -15,49 +15,45 @@ int n, k;
 vector<p> v;
 ll dsum = 0;
 ll ksum = 0;
-map<int, bool> mp;
-int selected = 0;
-int kcount = 0;
+ll res = 0;
+map<int, int> ate;
+
+void countKsum(){
+  for(auto a : ate){
+    ksum += (a.second > 0);
+  }
+}
 
 int main(){
+  vector<p> tmp;
   cin >> n >> k;
-  kcount = k;
   for (int i = 0; i < n; i++) {
-    int tmp1;
-    int tmp2;
-    cin >> tmp2 >> tmp1;
-    v.push_back({tmp1, tmp2});
+    int d, k;
+    cin >> k >> d;
+    v.push_back({d, k});
   }
   sort(rall(v));
 
-  while(kcount >= 0 && selected < k) {
-    int size = int(v.size());
-    for (int i = 0; i < size; i++) {
-      if(selected == k) break;
-      int d = v[i].first;
-      int ktmp = v[i].second;
-      if(!mp[ktmp]){
-        dsum += d;
-        mp[ktmp] = true;
-        ksum++;
-        selected++;
-        v.erase(v.begin() + i);
-        i--;
-      }
-      else if(d > kcount * kcount){
-        dsum += d;
-        selected++;
-        v.erase(v.begin() + i);
-        i--;
-      }
-      print(mp);
-      print(v);
+  for (int i = 0; i < k; i++) {
+    ate[v[i].second]++;
+    dsum += v[i].first;
+    if(ate[v[i].second] >= 2) tmp.push_back(v[i]);
+  }
+  sort(all(tmp));
+  countKsum();
+  res = ksum * ksum + dsum;
+
+  for (int i = k; i < n; i++) {
+    int tmpSize = int(tmp.size());
+    if(tmpSize == 0) break;
+    if(ate[v[i].second] == 0){
+      ate[v[i].second]++;
+      dsum += v[i].first - tmp[0].first;
+      ksum++;
+      res = max(res, ksum * ksum + dsum);
+      tmp.erase(tmp.begin() + 0);
     }
-    kcount--;
   }
 
-  cout << dsum << endl;
-  cout << ksum << endl;
-
-  cout << dsum + int(mp.size() * mp.size()) << endl;
+  cout << res << endl;
 }

@@ -16,34 +16,17 @@ int main(){
   int res = 0;
   cin >> n;
   vector<int> v(n, 0);
+  map<int, vector<int>> mp;
   for (int i = 0; i < n; i++) {
-    cin >> v[i];
+    int d, k;
+    cin >> d >> k;
+    mp[k].push_back(d);
   }
+  print(mp);
+  // for(auto a : mp){
+  //   print(a);
+  // }
 
-  while(true) {
-    bool flag = true;
-    int l = 0;
-    int r = n;
-    for (int i = 0; i < n; i++) {
-      if(v[i] > 0 && flag)
-      {
-        l = i;
-        flag = false;
-      }
-      if(!flag && v[i] == 0 && i > l) {
-        r = i;
-        break;
-      }
-    }
-    // cout << l << " : " << r << endl;
-    for (int i = l; i < r; i++) {
-      v[i]--;
-    }
-    // print(v);
-    res++;
-    if(flag) break;
-  }
 
-  cout << res-1 << endl;
 
 }
