@@ -30,19 +30,19 @@ void mp_init(){
 
 string dp[2000];
 
-void dfs(int nokori, string res, int pos){
-  if(nokori == 0){
-    if(res1.size() < res.size()){
-      res1 = res;
-    }
-    return;
-  }
-  if(nokori < 0) return;
-  for (int i = 0; i < m; i++) {
-    dfs(nokori - mp[v[i]], res + to_string(v[i]), i);
-  }
-  return;
+
+string my_max(string s1, string s2){
+  if(s1.size() > s2.size()) return s1;
+  else if(s1.size() == s2.size()){
+    if(s1 > s2) return s1;
+    else return s2;
+  }else return s2;
 }
+
+void my_search(){
+
+}
+
 
 
 int main(){
