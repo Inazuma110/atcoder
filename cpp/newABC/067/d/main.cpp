@@ -32,22 +32,34 @@ vector<int> distance2;
 
 void dist_init(){
   for (int i = 0; i < n; i++) {
-    distance1.push_back(0);
-    distance2.push_back(0);
+    distance1.push_back(-1);
+    distance2.push_back(-1);
   }
 }
 
 map<int, bool> visited;
 
+void map_init(){
+  for (int i = 0; i < n; i++) {
+    visited[i] = false;
+  }
+}
 
-void dfs(int from, int distance){
+
+void dfs1(int from, int distance){
   visited[from] = true;
   for(auto a : tree[from]){
-    if(visited[a]) continue;
-    cout << from << endl;
-    print(tree[from]);
     distance1[from] = distance;
-    dfs(a, distance + 1);
+    if(!visited[a]) dfs1(a, distance + 1);
+  }
+}
+
+// muda
+void dfs2(int from, int distance){
+  visited[from] = true;
+  for(auto a : tree[from]){
+    distance2[from] = distance;
+    if(!visited[a]) dfs2(a, distance + 1);
   }
 }
 
@@ -56,9 +68,19 @@ int main(){
   tree = tree_init();
   dist_init();
 
-  dfs(0, 0);
-  print(distance1);
+  dfs1(0, 0);
+  map_init();
+  dfs2(n-1, 0);
 
 
+  int count = 0;
+  for (int i = 0; i < n; i++) {
+    if (distance1[i] <= distance2[i]) count++;
+    else if(distance1[i] > distance2[i]) count--;
+  }
 
+
+  if(count > 0) cout << "Fennec" << endl;
+  else cout << "Snuke" << endl;
 }
+
