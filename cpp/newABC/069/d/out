@@ -1,0 +1,9 @@
+g++ -std=c++14 main.cpp -Wall -g -fsanitize=undefined -D_GLIBCXX_DEBUG
+cat input
+3 5
+5
+1 2 3 4 5
+cat input | ./a.out
+1 2 2 3 3
+4 4 4 4 3
+5 5 5 5 5
