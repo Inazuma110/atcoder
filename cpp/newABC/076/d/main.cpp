@@ -15,24 +15,39 @@ int main(){
   int n;
   cin >> n;
   vector<int> t(n);
-  vector<int> v(n);
-  int sum_time = 0;
+  vector<double> v(n);
   for (int i = 0; i < n; i++) {
     cin >> t[i];
-    sum_time += t[i];
   }
-  sum_time++;
   for (int i = 0; i < n; i++) {
     cin >> v[i];
   }
 
-  vector<double> maxv(2*n, 0);
 
-  int now_time = 0;
-  for (int i = 1; i < 2*n; i++) {
-    maxv[i] = min(maxv[i-1] + 0.5, v[i]);
+  vector<double> maxv(50000, 100000);
+
+  int sum_time = 0;
+  for (int i = 0; i < n; i++) {
+    t[i] *= 2;
+    for (int j = sum_time; j <= sum_time + t[i]; j++) {
+      maxv[j] = min(maxv[j], v[i]);
+    }
+    sum_time += t[i];
+  }
+  maxv[0] = maxv[sum_time] = 0;
+
+  for (int j = 0; j < n; j++) {
+    for (int i = 0; i < sum_time; i++) {
+      maxv[i+1] = min(maxv[i+1], maxv[i]+0.5);
+    }
+    for (int i = sum_time-1; i >= 0; i--) {
+      maxv[i] = min(maxv[i+1] + 0.5, maxv[i]);
+    }
   }
 
-
-
+  double res = 0;
+  for (int i = 0; i < sum_time; i++) {
+    res += double(maxv[i+1] + maxv[i]);
+  }
+  cout << res / 4 << endl;
 }
