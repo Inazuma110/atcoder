@@ -10,44 +10,57 @@ using namespace std;
 
 typedef long long ll;
 typedef pair<int, int> p;
-ll res = LLONG_MAX;
-int k, n;
 
-void full_search(vector<p> v){
-  for (int i = 0; i < n-1; i++) {
-    for (int j = 0; j < n; j++) {
-      for (int test = 0; test < n; test++) {
-        for (int test2 = 0; test2 < n; test2++) {
-        ll max_x = max(v[i].first, v[test].first);
-        ll min_x = min(v[i].first, v[test].first);
-        ll max_y = max(v[test2].second, v[j].second);
-        ll min_y = min(v[test2].second, v[j].second);
-        if(max_x == min_x || max_y == min_y) continue;
-        int count = 0;
-        ll area = (max_x - min_x) * (max_y - min_y);
-        for (int k = 0; k < n; k++) {
-          int nx = v[k].first;
-          int ny = v[k].second;
-          bool is_inner_point = (nx >= min_x && nx <= max_x && ny >= min_y && ny <= max_y);
-          if(is_inner_point){
-            count++;
-          }
-        }
-        // cout << max_x-min_x << " : " << max_y-min_y << endl;
-        // cout << area << endl;
-        if(count >= k) res = min(area, res);
-        }
-      }
+
+int n, m;
+bool graph[60][60];
+bool visited[60];
+
+void init(){
+  for (int i = 0; i < n; i++) {
+    visited[i] = false;
+  }
+}
+
+void dfs(int x){
+  if(visited[x]) return;
+  visited[x] = true;
+  for (int i = 0; i < n; i++) {
+    if(graph[x][i]){
+      dfs(i);
     }
   }
 }
 
+
 int main(){
-  cin >> n >> k;
-  vector<p> v(n);
-  for (int i = 0; i < n; i++) {
-    cin >> v[i].first >> v[i].second;
+  cin >> n >> m;
+  vector<int> a(m);
+  vector<int> b(m);
+  for (int i = 0; i < m; i++) {
+    cin >> a[i] >> b[i];
+    a[i]--; b[i]--;
+    graph[a[i]][b[i]] = true;
+    graph[b[i]][a[i]] = true;
   }
-  full_search(v);
+  int res = 0;
+
+  for (int i = 0; i < m; i++) {
+    graph[a[i]][b[i]] = graph[b[i]][a[i]] = false;
+    init();
+
+    dfs(0);
+
+    bool connect = true;
+    for (int i = 0; i < n; i++) {
+      if(!visited[i]) connect = false;
+    }
+    if(!connect) res++;
+    graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+
+  }
+
+
   cout << res << endl;
+
 }
