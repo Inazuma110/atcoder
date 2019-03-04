@@ -9,12 +9,12 @@ using namespace std;
 #define rall(x) (x).rbegin(), (x).rend()
 
 typedef long long ll;
-typedef pair<int, int> p;
+typedef pair<ll, ll> p;
 
 vector<ll> uni(100100, -1);
 
 // 頂点aの所属するグループを調べる。
-int root(int a)
+ll root(ll a)
 {
   // uni[a]が負の値なら親はa自身
   if (uni[a] < 0) return a;
@@ -27,7 +27,7 @@ int root(int a)
 }
 
 // 頂点aとbをつなぐ、もともと同じグループの場合falseを返す。
-bool connect(int a, int b)
+bool connect(ll a, ll b)
 {
   a = root(a);
   b = root(b);
@@ -36,7 +36,7 @@ bool connect(int a, int b)
   // aを大きなグループにしたいので、逆であれば入れ替える。
   if (uni[a] > uni[b])
   {
-    int hoge = a;
+    ll hoge = a;
     a = b;
     b = hoge;
   }
@@ -48,33 +48,34 @@ bool connect(int a, int b)
 }
 
 //  頂点a, bが同じグループか
-bool isConnect(int a, int b)
+bool isConnect(ll a, ll b)
 {
   return root(a) == root(b);
 }
 
 // 頂点aを含むグループの頂点数を調べる
-ll size(int a)
+ll size(ll a)
 {
   return -uni[root(a)];
 }
 
 int main(){
-  int n, m;
+  ll n, m;
   cin >> n >> m;
   vector<p> v(m);
-  for (int i = 0; i < m; i++) {
+  for (ll i = 0; i < m; i++) {
     cin >> v[i].first >> v[i].second;
   }
 
   vector<ll> ans(m, 0);
   ans[m-1] = (n * (n-1)) / 2;
 
-  for (int i = m-1; i >= 1; i--) {
+  for (ll i = m-1; i >= 1; i--) {
     if(root(v[i].first) != root(v[i].second)){
       ans[i-1] = ans[i] - size(v[i].first) * size(v[i].second);
       connect(v[i].first, v[i].second);
     }
+    else ans[i-1] = ans[i];
   }
 
   for(auto a : ans) cout << a << endl;
