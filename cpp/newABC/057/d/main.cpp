@@ -11,10 +11,10 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p;
 
-long long comb(int n, int r) {
+long long comb(ll n, ll r) {
     if(r > n - r) r = n - r; // because C(n, r) == C(n, n - r)
     long long ans = 1;
-    int i;
+    ll i;
 
     for(i = 1; i <= r; i++) {
         ans *= n - r + i;
@@ -25,48 +25,33 @@ long long comb(int n, int r) {
 }
 
 int main(){
-  int n, a, b;
+  ll n, a, b;
   cin >> n >> a >> b;
-  vector<ll> v(n, 0);
-  map<ll, ll> tmp;
-  ll kanousei = 1;
-  long double sum = 0, num = 0;
+  vector<ll> v(n);
+  map<ll, ll> mp;
   for (int i = 0; i < n; i++) {
     cin >> v[i];
+    mp[v[i]]++;
   }
   sort(rall(v));
-
-  for (int i = 0; i < n; i++) {
-    if(num < a || (num < b && tmp[v[i]] > 0)){
-      if(num < a) num++;
-      tmp[v[i]]++;
-    }
+  ll sum = 0;
+  ll big_num = 0;
+  for (int i = 0; i < a; i++) {
+    sum += v[i];
+    if(v[i] > v[a-1]) big_num++;
   }
 
-  bool flag = false;
-  ll not_min = 0;
+  long double ave = double(sum) / double(a);
+  printf("%LF\n",ave);
 
-  // tmp.first -> value
-  // tmp.second -> num
-  for(auto i : tmp){
-    if(i.second > 0) {
-      if(tmp.size() == 1) flag = true;
-      if(i.first != tmp.begin()->first) not_min += i.second;
-      sum += i.first * i.second;
+  ll res = 0;
+  if(a <= mp[v[0]]){
+    for (int i = a; i <= mp[v[0]] && i <= b; i++) {
+      res += comb(mp[v[0]], i);
     }
-  }
-  sum -= tmp.begin()->first * (tmp.begin()->second - (a - not_min));
-  kanousei = comb(tmp.begin()->second, a - not_min);
+  }else if(mp[v[a-1]] >= 2){
+    res += comb(mp[v[a-1]], a-big_num);
+  }else res++;
 
-  if(flag){
-    kanousei = 0;
-    for (ll i = a; i <= b; i++) {
-      kanousei += comb(tmp[sum], i);
-    }
-  }
-
-
-  long double ave = sum / num;
-  printf("%Lf\n%lld\n",ave, kanousei);
-
+  cout << res << endl;
 }
