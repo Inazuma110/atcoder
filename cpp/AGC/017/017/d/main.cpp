@@ -15,20 +15,4 @@ typedef pair<int, int> p;
 
 
 int main(){
-  string s;
-  cin >> s;
-  int n = int(s.size());
-  ll res = 0;
-  for (int i = 0; i < n; i++) {
-    int now = i + 1;
-    if(s[i] == 'U'){
-      res += n - now;
-      res += 2 * i;
-    }else{
-      res += 2 * (n - now);
-      res += i;
-    }
-  }
-
-  cout << res << endl;
 }

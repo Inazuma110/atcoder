@@ -14,21 +14,18 @@ typedef long long ll;
 typedef pair<int, int> p;
 
 
+
 int main(){
-  string s;
-  cin >> s;
-  int n = int(s.size());
-  ll res = 0;
-  for (int i = 0; i < n; i++) {
-    int now = i + 1;
-    if(s[i] == 'U'){
-      res += n - now;
-      res += 2 * i;
-    }else{
-      res += 2 * (n - now);
-      res += i;
+  ll n, a, b, c, d;
+  cin >> n >> a >> b >> c >> d;
+  for (int i = 0; i < n-1; i++) {
+    ll minv = i * c - (n-1-i)*d;
+    ll maxv = i * d - (n-1-i)*c;
+    if(b-a >= minv && b-a <= maxv){
+      cout << "YES" << endl;
+      return 0;
     }
   }
+  cout << "NO" << endl;
 
-  cout << res << endl;
 }
