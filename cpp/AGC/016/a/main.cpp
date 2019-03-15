@@ -15,34 +15,28 @@ int main(){
   string s;
   cin >> s;
 
-  map<char, int> est;
-  for(char c : s) est[c]++;
-  char max_char = '@';
-  int max_num = -1;
-
-  for(auto a : est){
-    if(a.second > max_num){
-      max_char = a.first;
-      max_num = a.second;
-    }
-  }
-
-  int size = int(s.size());
-  int res = 0;
-
-  while(true) {
-    if(max_num + res >= size) break;
-    for (int i = 0; i < size; i++) {
-      if(s[i] == max_char && s[i+1] != max_char) {
-        s[i+1] = max_char;
-        max_num++;
-        i++;
+  int res = INT_MAX;
+  for(char i = 'a'; i <= 'z'; i++){
+    string tmp = s;
+    int count = 0;
+    while(true){
+      bool flag = false;
+      for (int j = 0; j < int(tmp.size()); j++) {
+        if(tmp[j] != i) flag = true;
       }
+      if(!flag) break;
+      string tmp2 = "";
+      count++;
+      for (int j = 0; j < int(tmp.size())-1; j++) {
+        if(tmp[j] == i || tmp[j+1] == i) tmp2 += i;
+        else tmp2 += tmp[j];
+      }
+      tmp = tmp2;
     }
-    res++;
+    // cout << count << endl;
+    // cout << i << endl;
+    res = min(res, count);
   }
 
   cout << res << endl;
-
-
 }

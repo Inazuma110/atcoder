@@ -1,59 +1,42 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-#define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#if __has_include("print.hpp")
+  #include "print.hpp"
+#endif
+
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
-#define itn int
+#define MOD 1000000007
+#define INF 100100100
 
 typedef long long ll;
-typedef pair<ll,ll> p;
-int h, w;
+typedef pair<int, int> p;
 
-bool check(vector<string> v)
-{
-  for (int i = 0; i < h; i++) {
-    for (int j = 0; j < w; j++) {
-      // cout << v[i][j];
-      if(v[i][j] == '#') return false;
-    }
-    // cout << endl;
+
+int main(){
+  ll q, h, s, d, n;
+  cin >> q >> h >> s >> d >> n;
+  if(n == 1){
+    cout << min({q*4, h*2, s}) << endl;
+    return 0;
   }
-  return true;
+
+  q *= 8;
+  h *= 4;
+  s *= 2;
+
+
+
+  ll res1 = (n / 2) * q;
+  if(n % 2 == 1) res1 += q / 2;
+  ll res2 = (n / 2) * h;
+  if(n % 2 == 1) res2 += h / 2;
+  ll res3 = (n / 2) * s;
+  if(n % 2 == 1) res3 += s / 2;
+  ll res4 = (n / 2) * d;
+  if(n % 2 == 1) res4 += min({q, h, s}) / 2;
+
+  cout << min({res1, res2, res3, res4}) << endl;
 }
 
-int main()
-{
-  cin >> h >> w;
-  vector<string> v(h, "@");
-  for (int i = 0; i < h; i++) {
-    cin >> v[i];
-  }
-  v[0][0] = '@';
-  int dx[2] = {1, 0};
-  int dy[2] = {0, 1};
-
-  queue<p> q;
-  q.push({0, 0});
-  while(q.size() != 0) {
-    p tmp = q.front();
-    for (int i = 0; i < 2; i++) {
-      int ny = tmp.first + dy[i];
-      int nx = tmp.second + dx[i];
-      if(ny >= 0 && ny < h && nx >= 0 && nx < w && v[ny][nx] == '#')
-      {
-        q.push({ny, nx});
-        v[ny][nx] = '@';
-        break;
-      }
-      else continue;
-    }
-    q.pop();
-  }
-
-  bool flag = check(v);
-
-  if(flag) cout << "Possible" << endl;
-  else cout << "Impossible" << endl;
-}

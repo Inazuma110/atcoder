@@ -15,4 +15,34 @@ typedef pair<int, int> p;
 
 
 int main(){
+  ll n;
+  cin >> n;
+  vector<ll> v(n);
+  for (ll i = 0; i < n; i++) {
+    cin >> v[i];
+  }
+  sort(all(v));
+
+  ll now = 1;
+  ll now_size = v[0];
+  ll res = 1;
+  ll start = 0;
+  while(true) {
+    if(v[now] <= now_size * 2) {
+      now_size += v[now];
+    }else{
+      now_size += v[now];
+      start = now;
+    }
+    if(now == n-1){
+      res = n - start;
+      break;
+    }
+    now++;
+  }
+
+  cout << res << endl;
+
+
 }
+

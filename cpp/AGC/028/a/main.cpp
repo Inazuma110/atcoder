@@ -1,5 +1,5 @@
-using namespace std;
 #include <bits/stdc++.h>
+using namespace std;
 
 #if __has_include("print.hpp")
 #include "print.hpp"
@@ -28,33 +28,34 @@ int main(){
   string s, t;
   cin >> n >> m >> s >> t;
   ll l = lcm(n, m);
-  ll g = gcd(n, m);
-
-  vector<ll> sv;
-  vector<ll> tv;
-  for (ll i = 0; i < n; i++) {
-    if(i * l / n + 1 <= n) sv.push_back(i * l / n + 1);
+  // ll g = gcd(n, m);
+  if(n < m){
+    swap(s, t);
+    swap(n, m);
   }
 
-  for (ll i = 0; i < m; i++) {
-    if(i * l / m + 1 <= m) tv.push_back(i * l / m + 1);
-  }
-
-  // prll(sv);
-  // prll(tv);
-
-  for (ll i = 0; i < ll(sv.size()); i++)
-  {
-    for (ll j = 0; j < ll(tv.size()); j++)
-    {
-      if(i / n == j / m && s[i] != t[j])
-      {
+  int save = 0;
+  for (int i = 0; i < n; i++) {
+    int s_num = i * l / n;
+    char s_c = s[i];
+    for (int j = save; j < m; j++) {
+      int t_num = j * l / m;
+      char t_c = t[j];
+      // cout << s_num << endl;
+      // cout << s_c << endl;
+      // cout << t_num << endl;
+      // cout << t_c << endl;
+      if(s_num == t_num && s_c != t_c){
         cout << -1 << endl;
         return 0;
       }
-      if(sv[i] < tv[j]) break;
+      if(t_num >= s_num) {
+        save = j;
+        break;
+      }
     }
   }
 
   cout << l << endl;
+
 }
