@@ -32,20 +32,15 @@ int main(){
   cin >> n >> s;
   map<char, ll> mp;
   for(char c : s){
+    if(mp[c] == 0) mp[c] = 1;
     mp[c]++;
   }
-  ll res = 0;
-
-  for (int i = 0; i < n; i++) {
-    res += comb(n, i+1);
-    for(auto a : mp){
-      if(n-a.second >= && a.second >= 2){
-        res -= comb(a.second, i+1);
-      }
-    }
+  ll res = 1;
+  for(auto a : mp){
+    res *= a.second;
     res %= MOD;
   }
 
-  cout << res << endl;
+  cout << res-1 << endl;
 
 }

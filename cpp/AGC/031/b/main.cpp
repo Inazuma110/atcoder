@@ -11,7 +11,7 @@ using namespace std;
 #define INF 100100100
 
 typedef long long ll;
-typedef pair<int, int> p;
+typedef pair<ll, ll> p;
 
 long mod_pow(ll a, int p){
   if(p == 0) return 1;
@@ -39,31 +39,68 @@ long long comb(int n, int r) {
     return ans;
 }
 
+map<ll, p> mp;
+void init(){
+  for (int i = 0; i < 3 * 100000; i++) {
+    mp[i].first = -1;
+    mp[i].second = 0;
+  }
+}
+
 int main(){
   ll n;
   cin >> n;
   vector<ll> v(n);
-  map<ll, ll> mp;
-  for (int i = 0; i < n; i++) {
-    cin >> v[i];
+  cin >> v[0];
+  int index = 1;
+  for (int i = 1; i < n; i++) {
+    cin >> v[index];
+    if(v[index] != v[index-1]) index++;
   }
+  n = index;
   if(n == 1){
     cout << 1 << endl;
     return 0;
   }
+  init();
 
-  if(v[0] != v[1]) mp[v[0]]++;
-  for (int i = 1; i < n; i++) {
-    if(v[i-1] != v[i]) mp[v[i]]++;
-  }
-
+  ll store = 0;
   ll res = 1;
-  for(auto a : mp){
-    if(a.second >= 2){
-      res += comb(a.second, 2);
+  vector<ll> num(300000, 0);
+  for (int i = 0; i < n; i++) {
+    if(mp[v[i]].first != -1){
+      // cout << 111 << endl;
+      // res += mp[v[i]].second + num[v[i]];
+      res += pow(2, mp[v[i]].second) + num[v[i]];
       res %= MOD;
+      store++;
+    }else{
+      mp[v[i]].second = store;
     }
+    mp[v[i]].first = i;
+    num[v[i]]++;
   }
+
   cout << res << endl;
 
+  // for (int i = 1; i <= 5; i++) {
+  //   cout << i << endl;
+  //   cout << mp[i].first << " : " << mp[i].second << endl;
+  //   cout << "====" << endl;
+  // }
+
+
+  // if(v[0] != v[1]) mp[v[0]]++;
+  // for (int i = 1; i < n; i++) {
+  //   if(v[i-1] != v[i]) mp[v[i]]++;
+  // }
+  //
+  // ll res = 1;
+  // for(auto a : mp){
+  //   if(a.second >= 2){
+  //     res += comb(a.second, 2);
+  //     res %= MOD;
+  //   }
+  // }
+  // cout << res << endl;
 }
