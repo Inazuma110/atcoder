@@ -5,10 +5,9 @@ using namespace std;
   #include "print.hpp"
 #endif
 
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+#define ALL(x) (x).begin(), (x).end()
+#define RALL(x) (x).rbegin(), (x).rend()
 #define MOD 1000000007
-#define INF 100100100
 
 typedef long long ll;
 typedef pair<int, int> p;
@@ -26,32 +25,27 @@ long long comb(int n, int r) {
 }
 
 int main(){
-  int n, p;
-  cin >> n >> p;
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  int n;
+  cin >> n;
   vector<ll> v(n);
-  int kisu = 0;
-  int gusu = 0;
   for (int i = 0; i < n; i++) {
     cin >> v[i];
-    if(v[i] % 2 == 1) kisu++;
-    else gusu++;
+  }
+  vector<ll> sum(n+1, 0);
+
+  map<ll, ll> mp;
+  mp[0]++;
+  for (int i = 0; i < n; i++) {
+    sum[i+1] = v[i] + sum[i];
+    mp[sum[i+1]]++;
   }
 
   ll res = 0;
-  ll tmp = pow(2, gusu);
-
-  if(p == 0){
-    for (int i = 0; i <= kisu; i+=2) {
-      res += tmp * comb(kisu, i);
-    }
-  }else{
-    for (int i = 1; i <= kisu; i+=2) {
-      res += tmp * comb(kisu, i);
-    }
+  for(auto a : mp){
+    if(a.second >= 2) res += comb(a.second, 2);
   }
-
   cout << res << endl;
-
-
 
 }

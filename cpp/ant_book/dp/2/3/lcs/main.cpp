@@ -13,7 +13,7 @@ typedef pair<int, int> p;
 
 vector<vector<int>> dp(2000, vector<int>(2000));
 
-void solve(string s, string t){
+int solve(string s, string t){
   int n = int(s.size());
   int m = int(t.size());
 
@@ -26,17 +26,11 @@ void solve(string s, string t){
       }
     }
   }
-
-  cout << dp[n][m] << endl;
+  return dp[n][m];
 }
 
 int main(){
-  int n;
-  cin >> n;
-  for (int i = 0; i < n; i++)
-  {
-    string s, t;
-    cin >> s >> t;
-    solve(s, t);
-  }
+  string s, t;
+  cin >> s >> t;
+  solve(s, t);
 }
