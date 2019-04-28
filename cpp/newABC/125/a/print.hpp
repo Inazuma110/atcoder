@@ -14,7 +14,7 @@ struct Ignore{
 template <class T, class X=Container>
 struct PrintObj{
   void operator()(T value){
-    cout << *value;
+    cout << value;
   }
 };
 
@@ -31,7 +31,7 @@ struct PrintObj<T, typename Ignore<typename T::iterator>::type>{
       PrintObj<typename T::value_type>()(a);
       isFirst = false;
     }
-    cout << "]";
+    cout << "]" << endl;
   }
 };
 

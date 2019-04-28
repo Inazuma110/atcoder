@@ -18,12 +18,19 @@ int main(){
   cin.tie(0);
   int n;
   cin >> n;
-  vector<ll> v(n);
+  vector<int> v(n);
+  vector<int> c(n);
+  int res = 0;
   for (int i = 0; i < n; i++) {
     cin >> v[i];
   }
-  sort(ALL(v));
+  for (int i = 0; i < n; i++) {
+    cin >> c[i];
+    if(v[i] > c[i]){
+      res += v[i] - c[i];
+    }
+  }
 
-
+  cout << res << endl;
 
 }

@@ -16,14 +16,8 @@ typedef pair<int, int> p;
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
-  int n;
-  cin >> n;
-  vector<ll> v(n);
-  for (int i = 0; i < n; i++) {
-    cin >> v[i];
-  }
-  sort(ALL(v));
-
-
-
+  int a, b, t;
+  cin >> a >> b >> t;
+  int x = t / a;
+  cout << x * b << endl;
 }

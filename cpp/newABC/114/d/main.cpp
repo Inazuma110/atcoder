@@ -11,41 +11,33 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p;
 
-int n;
-int res = 0;
-vector<int> v;
-vector<int> dp;
+int dp[110];
 
-void dfs(int step, ll count){
-  if(count > 100) return;
-
-  if(step == n){
-    cout << count << endl;
-    cout << "+++++++++++++++" << endl;
-    if(count == 75) res++;
-    return;
+void init(){
+  for (int i = 0; i < 110; i++) {
+    dp[i] = 0;
   }
-  dfs(step+1, count);
-  count += v[step];
-  dfs(step+1, count);
 }
 
 int main(){
+  ll n;
   cin >> n;
-
-
-  for(int i = 1; i <= n; i++)
-  {
-    v.push_back(0);
-    for (int j = 1; j <= i; j++)
-    {
-      if(i % j == 0) v[i-1]++;
+  ll res = 0;
+  init();
+  for (int i = 1; i <= n; i++) {
+    ll count = dp[i-1];
+    for (int j = 1; j <= i; j++) {
+      if(i % j == 0){
+        count++;
+      }
+    }
+    dp[i] = count;
+    if(dp[i] == 75){
+      res++;
     }
   }
-  print(v);
-  dfs(2, 2);
+  print(dp);
 
-  cout << res << endl;
-
+  // cout << res << endl;
 
 }
