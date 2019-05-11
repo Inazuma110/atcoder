@@ -12,11 +12,32 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p;
 
-struct Node{
+struct Node {
   vector<int> to;
-  int coin = 1;
   bool visited = false;
 };
+
+int long_node_index = -1;
+int long_d = -1;
+
+void dfs(vector<Node> v, int now, int d){
+  d++;
+  if(v[now].visited){
+    if(d >= long_d){
+      long_d = d;
+      long_node_index = now;
+    }
+    return;
+  }
+  v[now].visited = true;
+
+  for (int i = 0; i < int(v[now].to.size()); i++) {
+    if(!v[i+1].visited){
+      dfs(v, v[now].to[i], d+1);
+    }
+  }
+}
+
 
 
 int main(){
@@ -34,14 +55,5 @@ int main(){
     v[edge[i].first].to.push_back(edge[i].second);
     v[edge[i].second].to.push_back(edge[i].first);
   }
-
-  int now = 0;
-  while(true){
-    if(v[now].to.size() % 2 == 1){
-      v[now].coin = 0;
-    }
-  }
-
-
 
 }
