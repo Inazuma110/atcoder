@@ -10,28 +10,35 @@ using namespace std;
 #define MOD 1000000007
 
 typedef long long ll;
-typedef pair<int, int> p;
+typedef pair<ll, ll> p;
 
+vector<ll> enumeration(ll n){
+  vector<ll> result;
+  for (ll i = 1; i*i <= n; i++) {
+    if(n % i == 0){
+      result.push_back(i);
+      result.push_back(n / i);
+    }
+  }
+  sort(ALL(result));
+  return result;
+}
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
   ll n;
   cin >> n;
-  ll res = 0;
-
-  ll before = -1;
-  for (int i = 1; i <= n; i++){
-    if(n % i == n / i) {
-      res += i;
-      before = n / i;
-    }
-    else if(before == n / i){
-      res += i * (n / i) + n % i - 1;
-      before = n / i;
-      i = i * (n / i) + n % i - 1;
-    }
+  if(n == 1){
+    cout << 0 << endl;
+    return 0;
   }
-
+  vector<ll> yakusu = enumeration(n);
+  ll res = 0;
+  yakusu.erase(yakusu.begin());
+  for(auto a : yakusu){
+    if(n % (a-1) == n / (a-1)) res += a-1;
+  }
   cout << res << endl;
+
 }
