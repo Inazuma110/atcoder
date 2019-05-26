@@ -16,17 +16,8 @@ typedef pair<int, int> p;
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
-  int n, m, q;
-  cin >> n >> m >> q;
-  vector<p> lr(m);
-  for (int i = 0; i < m; i++) {
-    cin >> lr[i].first >> lr[i].second;
-  }
-  vector<p> query(q);
-  for (int i = 0; i < q; i++) {
-    cin >> query[i].first >> query[i].second;
-  }
-  vector<ll> sum(m+1);
-
-
+  int a, p;
+  cin >> a >> p;
+  int num = a * 3 + p;
+  cout << num/2 << endl;
 }
