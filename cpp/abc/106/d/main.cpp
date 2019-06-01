@@ -14,19 +14,47 @@ typedef pair<int, int> p;
 
 
 int main(){
-  ios::sync_with_stdio(false);
-  cin.tie(0);
   int n, m, q;
   cin >> n >> m >> q;
   vector<p> lr(m);
   for (int i = 0; i < m; i++) {
     cin >> lr[i].first >> lr[i].second;
+    // lr[i].first--;
+    // lr[i].second--;
   }
   vector<p> query(q);
   for (int i = 0; i < q; i++) {
     cin >> query[i].first >> query[i].second;
+    // query[i].first--;
+    // query[i].second--;
   }
-  vector<ll> sum(m+1);
+  vector<vector<int>> area(n+1, vector<int>(n+1, 0));
+  for (int i = 0; i < m; i++) {
+    int start = lr[i].first;
+    int goal = lr[i].second;
+    area[start][goal]++;
+  }
+  // print(area);
 
+  for (int i = 0; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      area[i][j] += area[i][j-1];
+    }
+  }
+  for (int i = 0; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      area[j][i] += area[j-1][i];
+    }
+  }
 
+  // print(area);
+  for(auto a : query){
+    int minv = min(a.first, a.second);
+    int maxv = max(a.first, a.second);
+    int res = area[maxv][maxv] + area[minv-1][minv-1];
+    // cout << res << endl;
+    res -= (area[maxv][minv-1] + area[minv-1][maxv]);
+    cout << res << endl;
+    // cout << "====" << endl;
+  }
 }
