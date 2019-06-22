@@ -11,33 +11,53 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p;
 
-int dp[110];
+int dp[300][100];
 
 void init(){
-  for (int i = 0; i < 110; i++) {
-    dp[i] = 0;
+  for (int i = 0; i < 300; i++) {
+    for (int j = 0; j < 100; j++) {
+      dp[i][j] = 0;
+    }
   }
+}
+
+vector<pair<ll, int>> factoring(ll a){
+  vector<pair<ll, int>> v;
+  for (int i = 2; i <= a; i++) {
+    if(a % i == 0){
+      int count = 0;
+      while(a % i == 0){
+        count++;
+        a /= i;
+      }
+      v.push_back({i, count});
+    }
+  }
+  return v;
 }
 
 int main(){
   ll n;
   cin >> n;
-  ll res = 0;
-  init();
+  map<int, int> mp;
   for (int i = 1; i <= n; i++) {
-    ll count = dp[i-1];
-    for (int j = 1; j <= i; j++) {
-      if(i % j == 0){
-        count++;
-      }
-    }
-    dp[i] = count;
-    if(dp[i] == 75){
-      res++;
+    vector<pair<ll, int>> tmp = factoring(i);
+    for(auto a : tmp){
+      mp[a.first] += a.second;
     }
   }
-  print(dp);
 
-  // cout << res << endl;
+  int x = int(mp.size());
+
+  int count = 0;
+  int num = 1;
+  for(auto a : mp){
+    num *= a.second;
+    if(num > 75) break;
+    dp[count][num] = 0
+  }
+
+  for(auto a : mp) cout << a.first << ' ' << a.second << endl;
+  ll res = 0;
 
 }
