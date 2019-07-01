@@ -12,24 +12,23 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p;
 
-ll dp[300][11000];
-
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
 
-  int n, w;
-  cin >> n >> w;
-  vector<int> val(n), weight(n);
+  int n;
+  cin >> n;
+  vector<int> v(n);
   for (int i = 0; i < n; i++) {
-    cin >> weight[i] >> val[i];
+    cin >> v[i];
+  }
+  int res = 0;
+  for (int i = 1; i < n-1; i++) {
+    bool flag1 = (v[i] > v[i-1] && v[i] < v[i+1]);
+    bool flag2 = (v[i] < v[i-1] && v[i] > v[i+1]);
+    if(flag1 || flag2) res++;
   }
 
-  for (int i = 1; i <= n; i++) {
-    for (int j = 0; j < 11000; j++) {
-      if(j - v[i-1] >= 0)
-        dp[i][j] = min()
-    }
-  }
+  cout << res << endl;
 }
