@@ -15,5 +15,8 @@ int main()
 {
   int n, m;
   cin >> n >> m;
+  ll sec = 1900 * m + 100 * (n - m);
+  ll num = pow(2, m);
+  cout << sec * num << endl;
 
 }
