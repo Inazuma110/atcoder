@@ -1,77 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+#if __has_include("print.hpp")
+  #include "print.hpp"
+#endif
+
+#define ALL(x) (x).begin(), (x).end()
+#define RALL(x) (x).rbegin(), (x).rend()
+#define MOD 1000000007
 
 typedef long long ll;
-typedef pair<ll,ll> p;
+typedef pair<int, int> p;
 
 
-// prototype declare to print
-struct Container;
-
-template <class>
-struct Ignore;
-
-template <class, class X>
-struct PrintObj;
-
-template<class T>
-struct PrintObj<T, typename Ignore<typename T::iterator>::type>;
-
-template<class T>
-void print(T value);
-
-template<class T, class U>
-ostream& operator << (ostream& os, const pair<T, U> p);
-
-//////////////////////////////////////////////
-
-
-int main(void){
-
-}
-
-
-
-template <class>
-struct Ignore{
-  typedef Container type;
-};
-
-template <class T, class X=Container>
-struct PrintObj{
-  void operator()(T value){
-    cout << value;
+int main(){
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  int n, x;
+  cin >> n >> x;
+  vector<int> v(n);
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
   }
-};
+  ll res = 0;
+  if(v[0] > x){
+    res += v[0] - x;
+    v[0] = x;
+    res += v[1];
+    v[1] = 0;
+  }
 
-template<class T>
-struct PrintObj<T, typename Ignore<typename T::iterator>::type>{
-  void operator()(T value){
-    // cout << endl << "[";
-    cout << "[";
-    bool isFirst = true;
-    for(auto a : value){
-      if(!isFirst){
-        cout << ", ";
-      }
-      PrintObj<typename T::value_type>()(a);
-      isFirst = false;
+  for (int i = 1; i < n; i++) {
+    if(v[i-1] + v[i] > x){
+      res += v[i] - (x - v[i-1]);
+      v[i] = x - v[i-1];
     }
-    cout << "]";
   }
-};
 
-template<class T>
-void print(T value){
-  PrintObj<T>()(value);
-  cout << endl;
-}
-
-template<class T, class U>
-ostream& operator << (ostream& os, const pair<T, U> p){
-  os << "(" << p.first << " : " << p.second << ")";
-  return os;
+  cout << res << endl;
 }
