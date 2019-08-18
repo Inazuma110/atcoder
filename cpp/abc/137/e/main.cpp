@@ -5,6 +5,7 @@ using namespace std;
   #include "print.hpp"
 #endif
 
+#define rep(i, n) for(int i = 0; i < (int)(n); i++)
 #define ALL(x) (x).begin(), (x).end()
 #define RALL(x) (x).rbegin(), (x).rend()
 #define MOD 1000000007
@@ -12,13 +13,16 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p;
 
+vector<int> to(2505);
+vector<int> rto(2505);
+vector<bool> reach1(2505);
+vector<bool> reach_n(2505);
 
-int main(){
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-  int n, k;
-  string s;
-  cin >> n >> k >> s;
-  transform(s.begin(), s.end(), s.begin(), std::tolower);
+void dfs(int v){
+  if(reach1[v]) return;
+  reach1[v] = true;
 }
 
+int main(){
+
+}
