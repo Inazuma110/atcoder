@@ -5,48 +5,38 @@ using namespace std;
   #include "print.hpp"
 #endif
 
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+#define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define ALL(x) (x).begin(), (x).end()
+#define RALL(x) (x).rbegin(), (x).rend()
+#define MOD 1000000007
 
 typedef long long ll;
-typedef pair<int, int> p;
+typedef pair<ll, ll> p;
+
+ll n, h;
+int dp[1000000][2];
+int money[1000000];
 
 int main(){
-  long double n, h, a, b, c, d, e;
-  cin >> n >> h >> a >> b >> c >> d >> e;
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n >> h;
+  ll a, b, c, d, e;
+  cin >> a >> b >> c >> d >> e;
 
-  bool isRich = (a / b < c / d);
-  ll pay = 0;
+  ll money = LLONG_MAX;
 
-  if(int(h) / int(e) > n){
-    cout << 0 << endl;
-    return 0;
+  for (int i = 0; i <= n; i++) {
+    int j = double((n - i) * e - h - b * i) / double(d + e);
+    j = max(j, 0);
+    for (; j + i <= n; j++) {
+    if(b * i + d * j + h > e * (n - (i + j))){
+      ll tmp = i * a + j * c;
+      money = min(money, tmp);
+      break;
+    }
+    }
   }
 
-  n -= (int(h) / int(e));
-  h -= (int(h) / int(e)) * int(e);
-
-  ll husoku = n * e;
-  ll kaisu = 0;
-
-
-  if(isRich){
-    kaisu = husoku / int(b);
-    pay += kaisu * a;
-    h -= kaisu * b;
-  }
-  else {
-    kaisu = husoku / int(d);
-    pay += kaisu * c;
-    h -= kaisu * d;
-  }
-
-  if(h > d){
-    int tmp1 = pay + a;
-    int tmp2 = pay + 2 * b;
-    pay = min(tmp1, tmp2);
-  }else if(h != 0){
-    pay += c;
-  }
-  cout << pay << endl;
+  cout << money << endl;
 }
