@@ -17,4 +17,9 @@ typedef pair<ll, ll> p;
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
+  ll n;
+  cin >> n;
+  ll res = (n * (n - 1)) / 2;
+  cout << res << endl;
+
 }

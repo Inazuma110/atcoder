@@ -17,5 +17,11 @@ typedef pair<ll, ll> p;
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
-  int a, b, c;
+  string s, t;
+  cin >> s >> t;
+  int res = 0;
+  for (int i = 0; i < 3; i++) {
+    if(s[i] == t[i]) res++;
+  }
+  cout << res << endl;
 }

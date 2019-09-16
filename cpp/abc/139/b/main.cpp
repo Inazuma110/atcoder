@@ -17,4 +17,15 @@ typedef pair<ll, ll> p;
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(0);
+  int a, b;
+  cin >> a >> b;
+  int count = 1;
+  int res = 0;
+  while(count < b){
+    res++;
+    count += a - 1;
+  }
+  cout << res << endl;
+
+
 }
