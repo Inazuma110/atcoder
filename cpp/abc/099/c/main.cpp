@@ -1,40 +1,45 @@
 #include <bits/stdc++.h>
+#include <boost/multiprecision/cpp_int.hpp>
+#include <vector>
+
+using boost::multiprecision::cpp_int;
 using namespace std;
 
 #if __has_include("print.hpp")
   #include "print.hpp"
 #endif
 
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+#define rep(i, n) for(int i = 0; i < (int)(n); i++)
+#define ALL(x) (x).begin(), (x).end()
+#define RALL(x) (x).rbegin(), (x).rend()
+#define MOD 1000000007
+
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
 typedef long long ll;
-typedef pair<int, int> p;
-int n;
+typedef pair<ll, ll> p;
 
-// void init(){
-//   vector<int> tmp(100010, INT_MAX);
-//   tmp[0] = 1;
-//   // tmp[1] = 1;
-//   dp = tmp;
-// }
 
 int main(){
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  ll n;
   cin >> n;
-  vector<int> dp(100100, INT_MAX);
-  dp[0] = 0;
+  vector<int> dp(n+100);
+  dp[1] = 1;
 
-  for (int i = 1; i < 100100; i++) {
-    int power = 1;
-    while(power <= i) {
-      dp[i] = min(dp[i], dp[i-power]+1);
-      power *= 6;
+  for (int i = 1; i < n+100; ++i) {
+    dp[i] = dp[i-1] + 1;
+    int tmp = 1;
+    while(i - pow(6, tmp) >= 0){
+      dp[i] = min(dp[i], dp[i - int(pow(6, tmp))] + 1);
+      tmp++;
     }
-
-    power = 1;
-    while(power <= i) {
-      dp[i] = min(dp[i], dp[i-power]+1);
-      power *= 9;
+    tmp = 1;
+    while(i - pow(9, tmp) >= 0){
+      dp[i] = min(dp[i], dp[i - int(pow(9, tmp))] + 1);
+      tmp++;
     }
   }
 
