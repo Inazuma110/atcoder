@@ -28,9 +28,19 @@ int main(){
   cin >> n;
   vector<ll> y(n), x(n);
   rep(i, n) cin >> x[i] >> y[i];
-  vector<ll> v(n);
-  rep(i, n) v[i] = abs(x[i])+abs(y[i]);
-  sort(ALL(v));
-  cout << abs(v[0]-v[n-1]) << endl;
+  vector<ll> v1(n), v2(n);
+  rep(i, n){
+    v1[i] = x[i]+y[i];
+    v2[i] = x[i]-y[i];
+  }
+  sort(ALL(v1));
+  ll res = v1[n-1] - v1[0];
+  sort(ALL(v2));
+  chmax(res, v2[n-1]-v2[0]);
+
+  cout << res << endl;
+
+
+
 }
 

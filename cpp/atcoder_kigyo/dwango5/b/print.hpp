@@ -31,7 +31,7 @@ struct PrintObj<T, typename Ignore<typename T::iterator>::type>{
       PrintObj<typename T::value_type>()(a);
       isFirst = false;
     }
-    cout << "]";
+    cout << "]" << endl;
   }
 };
 
